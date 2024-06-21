@@ -1,4 +1,4 @@
-module github.com/jviney/go-filelock
+module github.com/tengteng22/go-filelock
 
 go 1.12
 
