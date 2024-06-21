@@ -3,7 +3,6 @@ package filelock
 import (
 	"errors"
 	"os"
-	"syscall"
 	"time"
 )
 
@@ -79,9 +78,9 @@ func (l *FileLock) Unlock() error {
 }
 
 func flock(file *os.File) error {
-	return syscall.Flock(int(file.Fd()), syscall.LOCK_EX)
+	return lockFile(int(file.Fd()))
 }
 
 func releaseFlock(file *os.File) error {
-	return syscall.Flock(int(file.Fd()), syscall.LOCK_UN)
+	return unlockFile(int(file.Fd()))
 }
